@@ -65,7 +65,7 @@ class Presence:
         print("[WinYandexMusicRPC] -> Launched. Check the actual version...")
         GetLastVersion('https://github.com/FozerG/WinYandexMusicRPC')
 
-        self.rpc = pypresence.Presence(client_id)
+        self.rpc = pypresence.Presence(client_id, pipe=0)
         self.rpc.connect()
         self.client = Client().init()
         self.running = True
@@ -97,7 +97,8 @@ class Presence:
                         end=currentTime + remainingTime,
                         large_image=ongoing_track['og-image'],
                         large_text=ongoing_track['album'],
-                        buttons=[{'label': 'Listen on Yandex.Music', 'url': ongoing_track['link']}] #Для текста кнопки есть ограничение в 32 байта. Кириллица считается за 2 байта.
+                        small_image="assets/play.png",
+                        buttons=[{'label': 'Слушать на Я.Музыке', 'url': ongoing_track['link']}] #Для текста кнопки есть ограничение в 32 байта. Кириллица считается за 2 байта.
                                                                                             #Если превысить лимит то Discord RPC не будет виден другим пользователям.
                     )
 
